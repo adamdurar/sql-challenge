@@ -50,12 +50,17 @@ WHERE employees.emp_no = dept_emp.emp_no and departments.dept_no = dept_emp.dept
 -- #7 - List all employees in the Sales and Development departments, including their employee number, last name, 
 -- first name, and department name.
 
--- SELECT employees.emp_no, employees.last_name, employees.first_name, departments.dept_name
+SELECT employees.emp_no, employees.last_name, employees.first_name, departments.dept_name
 
--- FROM employees, departments, dept_emp
+FROM employees
 
--- WHERE employees.emp_no = dept_emp.emp_no and departments.dept_no = dept_emp.dept_no and 
--- departments.dept_name = 'Sales' or departments.dept_name = 'Development' 
+JOIN dept_emp ON employees.emp_no = dept_emp.emp_no
+
+JOIN departments ON departments.dept_no = dept_emp.dept_no
+
+WHERE departments.dept_name = 'Development' OR departments.dept_name = 'Sales'
+
+ORDER BY employees.emp_no ASC;
 
 
 -- #8 In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
